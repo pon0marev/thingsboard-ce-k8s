@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: promtail-deployment
+  namespace: thingsboard
+spec:
+  selector:
+    matchLabels:
+      name: promtail
+  template:
+    metadata:
+      labels:
+        name: promtail
+    spec:
+      volumes:
+        - name: logs
+          hostPath:
+            path: var/log/promtail
+        - name: promtail-config
+          configMap:
+            name: promtail-configmap
+      containers:
+        - name: promtail-container
+          image: grafana/promtail:2.2.1
+          ports:
+            - containerPort: 9080
+          resources:
+            requests:
+              cpu: 500m
+              memory: 500M
+            limits:
+              cpu: 1
+              memory: 1Gi
+          args:
+            - "--config.file=/etc/promtail/promtail.yaml"
+          volumeMounts:
+            - name: logs
+              mountPath: /promtail/
+            - name: promtail-config
+              mountPath: /etc/promtail
