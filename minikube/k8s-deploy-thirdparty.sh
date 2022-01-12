@@ -21,4 +21,9 @@ source .env
 
 kubectl config set-context $(kubectl config current-context) --namespace=thingsboard
 
-kubectl apply -f thirdparty.yml
+#kubectl apply -f thirdparty.yml
+
+kubectl apply -f ./Monitoring/test/
+kubectl apply -f ./Monitoring/loki/
+kubectl apply -f ./Monitoring/prometheus/
+kubectl apply -f ./Monitoring/grafana/
