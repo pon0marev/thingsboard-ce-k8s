@@ -4,7 +4,7 @@ metadata:
   name: prometheus-server-conf
   labels:
     name: prometheus-server-conf
-  namespace: thingsboard
+
 data:
   prometheus.rules: |-
     groups:

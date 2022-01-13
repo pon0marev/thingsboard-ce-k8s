@@ -20,10 +20,8 @@ set -e
 source .env
 
 kubectl config set-context $(kubectl config current-context) --namespace=thingsboard
-#kubectl delete -f thirdparty.yml
+kubectl delete -f thirdparty.yml
 
-
-kubectl delete -f ./Monitoring/test/
 kubectl delete -f ./Monitoring/loki/
 kubectl delete -f ./Monitoring/prometheus/
 kubectl delete -f ./Monitoring/grafana/

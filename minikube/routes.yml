@@ -12,20 +12,6 @@ spec:
   rules:
     - http:
         paths:
-#          - path: /login
-#            pathType: ImplementationSpecific
-#            backend:
-#              service:
-#                name: grafana
-#                port:
-#                  number: 3000
-#          - path: /grafana
-#            pathType: ImplementationSpecific
-#            backend:
-#              service:
-#                name: grafana
-#                port:
-#                  number: 3000
           - path: /api/v1/.*
             pathType: ImplementationSpecific
             backend:
