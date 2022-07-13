@@ -1,0 +1,20 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: tb-mqtt-loadbalancer
+  namespace: thingsboard
+spec:
+  selector:
+    app: tb-node
+  ports:
+  - name: mqtt
+    port: 1883
+    targetPort: 1883
+    nodePort: 31881
+  - name: mqtts
+    port: 8883
+    targetPort: 8883
+    nodePort: 31882
+  type: LoadBalancer
+  externalIPs:
+  - 192.168.49.2
