@@ -132,6 +132,8 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: tb-http-transport-config
+            - mountPath: /var/log/tb-http-transport
+              name: tb-http-transport-logs
       volumes:
         - name: tb-http-transport-config
           configMap:
@@ -143,13 +145,13 @@ spec:
                 path:  logback.xml
   volumeClaimTemplates:
     - metadata:
-        name: logs
+        name: tb-http-transport-logs
       spec:
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 200Mi
+            storage: 750Mi
 ---
 apiVersion: v1
 kind: Service

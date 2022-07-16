@@ -93,15 +93,6 @@ spec:
                     values:
                       - tb-snmp-transport
               topologyKey: "kubernetes.io/hostname"
-      volumes:
-        - name: tb-snmp-transport-config
-          configMap:
-            name: tb-snmp-transport-config
-            items:
-              - key: conf
-                path:  tb-snmp-transport.conf
-              - key: logback
-                path:  logback.xml
       containers:
         - name: server
           imagePullPolicy: Always
@@ -121,4 +112,24 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: tb-snmp-transport-config
+            - mountPath: /var/log/tb-snmp-transport
+              name: tb-snmp-transport-logs
+      volumes:
+        - name: tb-snmp-transport-config
+          configMap:
+            name: tb-snmp-transport-config
+            items:
+              - key: conf
+                path:  tb-snmp-transport.conf
+              - key: logback
+                path:  logback.xml
+  volumeClaimTemplates:
+    - metadata:
+        name: tb-snmp-transport-logs
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 750Mi
 ---

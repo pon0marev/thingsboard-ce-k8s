@@ -93,15 +93,6 @@ spec:
                     values:
                       - tb-lwm2m-transport
               topologyKey: "kubernetes.io/hostname"
-      volumes:
-        - name: tb-lwm2m-transport-config
-          configMap:
-            name: tb-lwm2m-transport-config
-            items:
-              - key: conf
-                path:  tb-lwm2m-transport.conf
-              - key: logback
-                path:  logback.xml
       containers:
         - name: server
           imagePullPolicy: Always
@@ -136,6 +127,26 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: tb-lwm2m-transport-config
+            - mountPath: /var/log/tb-lwm2m-transport
+              name: tb-lwm2m-transport-logs
+      volumes:
+        - name: tb-lwm2m-transport-config
+          configMap:
+            name: tb-lwm2m-transport-config
+            items:
+              - key: conf
+                path:  tb-lwm2m-transport.conf
+              - key: logback
+                path:  logback.xml
+  volumeClaimTemplates:
+    - metadata:
+        name: tb-lwm2m-transport-logs
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 750Mi
 ---
 apiVersion: v1
 kind: Service

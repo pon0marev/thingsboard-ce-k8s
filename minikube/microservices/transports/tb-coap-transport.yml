@@ -122,6 +122,8 @@ spec:
           volumeMounts:
             - mountPath: /config
               name: tb-coap-transport-config
+            - mountPath: /var/log/tb-coap-transport
+              name: tb-coap-transport-logs
       volumes:
         - name: tb-coap-transport-config
           configMap:
@@ -133,13 +135,13 @@ spec:
                 path:  logback.xml
   volumeClaimTemplates:
     - metadata:
-        name: logs
+        name: tb-coap-transport-logs
       spec:
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 200Mi
+            storage: 750Mi
 ---
 apiVersion: v1
 kind: Service
