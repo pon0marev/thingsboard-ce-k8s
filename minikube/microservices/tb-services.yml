@@ -137,7 +137,7 @@ metadata:
   name: tb-js-executor
   namespace: thingsboard
 spec:
-  replicas: 5
+  replicas: 2
   selector:
     matchLabels:
       app: tb-js-executor
