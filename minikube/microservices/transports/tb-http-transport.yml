@@ -31,7 +31,7 @@ data:
     export LOG_FILENAME=tb-http-transport.out
     export LOADER_PATH=/usr/share/tb-http-transport/conf
 
-logback: |
+  logback: |
     <!DOCTYPE configuration>
     <configuration scan="true" scanPeriod="10 seconds">
 
