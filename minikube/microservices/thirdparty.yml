@@ -339,16 +339,6 @@ spec:
       labels:
         app: tb-redis
     spec:
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            - labelSelector:
-                matchExpressions:
-                  - key: "app"
-                    operator: In
-                    values:
-                      - tb-node
-              topologyKey: "kubernetes.io/hostname"
       containers:
         - name: server
           imagePullPolicy: Always
