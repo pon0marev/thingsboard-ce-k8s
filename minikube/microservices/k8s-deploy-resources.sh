@@ -26,7 +26,6 @@ kubectl apply -f tb-kafka-configmap.yml
 kubectl apply -f tb-redis-configmap.yml
 kubectl apply -f tb-services.yml
 
-kubectl apply -f transports/tb-mqtt-transport.yml
 
 kubectl apply -f receipts/routes.yml
 
