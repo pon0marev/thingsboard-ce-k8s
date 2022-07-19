@@ -49,7 +49,7 @@ function installCassandra() {
     kubectl exec -it cassandra-0 -- bash -c "cqlsh -u cassandra -p cassandra -e \
                     \"CREATE KEYSPACE IF NOT EXISTS thingsboard \
                     WITH replication = { \
-                        'class' : 'SimpleStrategy', \
+                        'class' : 'NetworkTopologyStrategy', \
                         'replication_factor' : $CASSANDRA_REPLICATION_FACTOR \
                     };\""
 }
