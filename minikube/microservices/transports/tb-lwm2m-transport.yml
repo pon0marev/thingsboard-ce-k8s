@@ -74,7 +74,7 @@ metadata:
 spec:
   serviceName: "tb-lwm2m-transport"
   podManagementPolicy: Parallel
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: tb-lwm2m-transport

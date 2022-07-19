@@ -75,7 +75,7 @@ metadata:
 spec:
   serviceName: "tb-coap-transport"
   podManagementPolicy: Parallel
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: tb-coap-transport

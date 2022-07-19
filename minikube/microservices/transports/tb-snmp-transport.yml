@@ -74,7 +74,7 @@ metadata:
 spec:
   serviceName: "tb-snmp-transport"
   podManagementPolicy: Parallel
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: tb-snmp-transport

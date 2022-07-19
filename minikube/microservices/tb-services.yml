@@ -21,7 +21,7 @@ metadata:
   namespace: thingsboard
 spec:
   serviceName: tb-node
-  replicas: 1
+  replicas: 3
   podManagementPolicy: "Parallel"
   selector:
     matchLabels:
@@ -137,7 +137,7 @@ metadata:
   name: tb-js-executor
   namespace: thingsboard
 spec:
-  replicas: 2
+  replicas: 5
   selector:
     matchLabels:
       app: tb-js-executor
@@ -175,7 +175,7 @@ metadata:
   name: tb-web-ui
   namespace: thingsboard
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: tb-web-ui

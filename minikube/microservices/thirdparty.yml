@@ -36,6 +36,8 @@ data:
     maxClientCnxns=200
     standaloneEnabled=true
     server.0=zookeeper-0.zookeeper-headless.thingsboard.svc.cluster.local:2888:3888;2181
+    server.1=zookeeper-1.zookeeper-headless.thingsboard.svc.cluster.local:2888:3888;2181
+    server.2=zookeeper-2.zookeeper-headless.thingsboard.svc.cluster.local:2888:3888;2181
   log4j.properties: |+
     zookeeper.root.logger=INFO, CONSOLE
     zookeeper.console.threshold=INFO
@@ -52,7 +54,7 @@ metadata:
   namespace: thingsboard
 spec:
   serviceName: "zookeeper-headless"
-  replicas: 1
+  replicas: 3
   podManagementPolicy: OrderedReady
   selector:
     matchLabels:
@@ -62,6 +64,16 @@ spec:
       labels:
         app: zookeeper
     spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: "app"
+                    operator: In
+                    values:
+                      - zookeeper
+              topologyKey: "kubernetes.io/hostname"
       containers:
         - name: zookeeper
           imagePullPolicy: Always
