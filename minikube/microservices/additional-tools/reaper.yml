@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cassandra-reaper
+  namespace: thingsboard
+spec:
+  serviceName: "cassandra-reaper"
+  replicas: 1
+  podManagementPolicy: Parallel
+  selector:
+    matchLabels:
+      app: cassandra-reaper
+  template:
+    metadata:
+      labels:
+        app: cassandra-reaper
+    spec:
+      containers:
+        - name: cassandra-reaper
+          imagePullPolicy: Always
+          image: thelastpickle/cassandra-reaper:master
+          ports:
+            - containerPort: 8080
+              name: reaper-80
+            - containerPort: 8081
+              name: reaper-81
+          # readinessProbe:
+          #   periodSeconds: 20
+          #   tcpSocket:
+          #     port: 9092
+          # livenessProbe:
+          #   initialDelaySeconds: 65
+          #   periodSeconds: 5
+          #   tcpSocket:
+          #     port: 9092
+          env:
+            - name: REAPER_CASS_AUTH_ENABLED
+              value: "true"
+            - name: REAPER_JMX_AUTH_USERNAME
+              value: "cassandra"
+            - name: REAPER_JMX_AUTH_PASSWORD
+              value: "cassandrapassword"
+            - name: CRYPTO_SYSTEM_PROPERTY_SECRET
+              value: "REAPER_JMX_KEY"
+            - name: REAPER_JMX_KEY
+              value:  "cassandrapassword"
+            - name: REAPER_STORAGE_TYPE
+              value: "cassandra"
+            - name: REAPER_CASS_CLUSTER_NAME
+              value: "Thingsboard Cluster"
+            - name: REAPER_CASS_CONTACT_POINTS
+              value: "[cassandra]"
+            - name: REAPER_CASS_KEYSPACE
+              value: "reaper_db"
+            - name: REAPER_ENABLE_DYNAMIC_SEED_LIST
+              value: "false" 
+            - name: REAPER_CASS_MAX_SCHEMA_AGREEMENT_WAIT
+              value: "90s"
+            # - name: REAPER_DATACENTER_AVAILABILITY # datacenterAvailability has three possible values: ALL | LOCAL | EACH | SIDECAR
+            #   value: "LOCAL"
+            # - name: REAPER_CASS_LOCAL_DC
+            #   value: "datacenter1"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cassandra-reaper
+  namespace: thingsboard
+spec:
+  type: ClusterIP
+  selector:
+    app: cassandra-reaper
+  ports:
+    - port: 8080
+      name: reaper-80
+    - port: 8081
+      name: reaper-81
+  clusterIP: None
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: cassandra-reaper-loadbalancer
+  namespace: thingsboard
+spec:
+  selector:
+    app: cassandra-reaper
+  ports:
+    - port: 8080
+      name: reaper-80
+    - port: 8081
+      name: reaper-81
+  type: LoadBalancer
+  externalIPs:
+  - 192.168.49.2
