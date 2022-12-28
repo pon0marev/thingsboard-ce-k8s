@@ -47,7 +47,7 @@ spec:
             - name: REAPER_STORAGE_TYPE
               value: "cassandra"
             - name: REAPER_CASS_CLUSTER_NAME
-              value: "Thingsboard Cluster"
+              value: "Thingsboard Reaper Cluster"
             - name: REAPER_CASS_CONTACT_POINTS
               value: "[cassandra]"
             - name: REAPER_CASS_KEYSPACE
@@ -56,10 +56,10 @@ spec:
               value: "false" 
             - name: REAPER_CASS_MAX_SCHEMA_AGREEMENT_WAIT
               value: "90s"
-            # - name: REAPER_DATACENTER_AVAILABILITY # datacenterAvailability has three possible values: ALL | LOCAL | EACH | SIDECAR
-            #   value: "LOCAL"
-            # - name: REAPER_CASS_LOCAL_DC
-            #   value: "datacenter1"
+            - name: REAPER_DATACENTER_AVAILABILITY # datacenterAvailability has three possible values: ALL | LOCAL | EACH | SIDECAR
+              value: "LOCAL"
+            - name: REAPER_CASS_LOCAL_DC
+              value: "datacenter1"
 
 ---
 apiVersion: v1

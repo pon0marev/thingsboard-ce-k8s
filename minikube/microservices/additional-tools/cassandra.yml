@@ -49,6 +49,7 @@ metadata:
 spec:
   serviceName: cassandra
   replicas: 3
+  podManagementPolicy: "Parallel"
   selector:
     matchLabels:
       app: cassandra
