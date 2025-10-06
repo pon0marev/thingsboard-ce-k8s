@@ -18,7 +18,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgres-pv-claim
-  namespace: thingsboard
+  namespace: thingsboard-test
   labels:
     app: postgres
 spec:
@@ -32,7 +32,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres
-  namespace: thingsboard
+  namespace: thingsboard-test
   labels:
     app: postgres
 spec:
@@ -91,7 +91,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tb-database
-  namespace: thingsboard
+  namespace: thingsboard-test
 spec:
   type: ClusterIP
   selector:

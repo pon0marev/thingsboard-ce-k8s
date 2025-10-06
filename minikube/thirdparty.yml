@@ -18,7 +18,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: tb-zookeeper
-  namespace: thingsboard
+  namespace: thingsboard-test
 data:
   start-node.sh: |
     #!/bin/sh
@@ -50,7 +50,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: zookeeper
-  namespace: thingsboard
+  namespace: thingsboard-test
 spec:
   serviceName: "zookeeper-headless"
   replicas: 3
@@ -125,7 +125,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: zookeeper
-  namespace: thingsboard
+  namespace: thingsboard-test
 spec:
   type: ClusterIP
   ports:
@@ -145,7 +145,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: zookeeper-headless
-  namespace: thingsboard
+  namespace: thingsboard-test
   labels:
     app: zookeeper
 spec:
@@ -167,7 +167,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: tb-kafka
-  namespace: thingsboard
+  namespace: thingsboard-test
 spec:
   serviceName: "tb-kafka"
   replicas: 1
@@ -302,7 +302,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tb-kafka
-  namespace: thingsboard
+  namespace: thingsboard-test
 spec:
   type: ClusterIP
   selector:
@@ -318,7 +318,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: tb-valkey
-  namespace: thingsboard
+  namespace: thingsboard-test
 spec:
   serviceName: "tb-valkey"
   replicas: 1
@@ -373,7 +373,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tb-valkey
-  namespace: thingsboard
+  namespace: thingsboard-test
 spec:
   type: ClusterIP
   selector:

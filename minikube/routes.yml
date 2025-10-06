@@ -18,7 +18,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: tb-ingress
-  namespace: thingsboard
+  namespace: thingsboard-test
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
     nginx.ingress.kubernetes.io/ssl-redirect: "false"

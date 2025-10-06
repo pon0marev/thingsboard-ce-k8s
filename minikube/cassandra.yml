@@ -18,7 +18,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: cassandra-probe-config
-  namespace: thingsboard
+  namespace: thingsboard-test
   labels:
     name: cassandra-probe-config
 data:
@@ -39,7 +39,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: cassandra
-  namespace: thingsboard
+  namespace: thingsboard-test
   labels:
     app: cassandra
 spec:
@@ -141,7 +141,7 @@ metadata:
   labels:
     app: cassandra
   name: cassandra
-  namespace: thingsboard
+  namespace: thingsboard-test
 spec:
   clusterIP: None
   ports:
