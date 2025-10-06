@@ -34,9 +34,9 @@ data:
     syncLimit=2
     maxClientCnxns=200
     standaloneEnabled=true
-    server.0=zookeeper-0.zookeeper-headless.thingsboard.svc.cluster.local:2888:3888;2181
-    server.1=zookeeper-1.zookeeper-headless.thingsboard.svc.cluster.local:2888:3888;2181
-    server.2=zookeeper-2.zookeeper-headless.thingsboard.svc.cluster.local:2888:3888;2181
+    server.0=zookeeper-0.zookeeper-headless.thingsboard-test.svc.cluster.local:2888:3888;2181
+    server.1=zookeeper-1.zookeeper-headless.thingsboard-test.svc.cluster.local:2888:3888;2181
+    server.2=zookeeper-2.zookeeper-headless.thingsboard-test.svc.cluster.local:2888:3888;2181
   log4j.properties: |+
     zookeeper.root.logger=INFO, CONSOLE
     zookeeper.console.threshold=INFO
@@ -244,7 +244,7 @@ spec:
             - name: KAFKA_CFG_INTER_BROKER_LISTENER_NAME
               value: "PLAINTEXT"
             - name: KAFKA_CFG_CONTROLLER_QUORUM_VOTERS
-              value: "0@tb-kafka-0.tb-kafka.thingsboard.svc.cluster.local:9093"
+              value: "0@tb-kafka-0.tb-kafka.thingsboard-test.svc.cluster.local:9093"
             - name: KAFKA_CFG_CONTROLLER_LISTENER_NAMES
               value: "CONTROLLER"
             - name: KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE

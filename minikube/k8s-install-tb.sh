@@ -85,7 +85,7 @@ fi
 source .env
 
 kubectl apply -f tb-namespace.yml || echo
-kubectl config set-context $(kubectl config current-context) --namespace=thingsboard
+kubectl config set-context $(kubectl config current-context) --namespace=thingsboard-test
 kubectl apply -f thirdparty.yml
 
 case $DATABASE in
