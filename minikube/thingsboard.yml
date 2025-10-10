@@ -18,7 +18,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tb-js-executor
-  namespace: thingsboard-test
+  namespace: thingsboard
 spec:
   replicas: 5
   selector:
@@ -64,7 +64,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: tb-mqtt-transport
-  namespace: thingsboard-test
+  namespace: thingsboard
 spec:
   serviceName: "tb-mqtt-transport"
   podManagementPolicy: Parallel
@@ -135,7 +135,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tb-mqtt-transport
-  namespace: thingsboard-test
+  namespace: thingsboard
 spec:
   type: ClusterIP
   selector:
@@ -148,7 +148,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: tb-http-transport
-  namespace: thingsboard-test
+  namespace: thingsboard
 spec:
   serviceName: "tb-http-transport"
   podManagementPolicy: Parallel
@@ -219,7 +219,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tb-http-transport
-  namespace: thingsboard-test
+  namespace: thingsboard
 spec:
   type: ClusterIP
   selector:
@@ -232,7 +232,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: tb-coap-transport
-  namespace: thingsboard-test
+  namespace: thingsboard
 spec:
   serviceName: "tb-coap-transport"
   podManagementPolicy: Parallel
@@ -295,7 +295,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tb-coap-transport
-  namespace: thingsboard-test
+  namespace: thingsboard
 spec:
   type: LoadBalancer
   selector:
@@ -309,7 +309,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: tb-web-ui
-  namespace: thingsboard-test
+  namespace: thingsboard
 spec:
   replicas: 1
   selector:
@@ -356,7 +356,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tb-web-ui
-  namespace: thingsboard-test
+  namespace: thingsboard
 spec:
   type: ClusterIP
   selector:
